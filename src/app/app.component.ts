@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AccordionModule } from "ng2-accordion";
+
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.Component.html',
+  styleUrls: ['./app.Component.css']
 })
 export class AppComponent implements OnInit {
+  @Input() opened = false;
+  @Input() title: string;
+  @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
 
   constructor (private httpService: HttpClient) { }
 
   arrMusic: string [];
 
+  //retrieving the music genres
   ngOnInit () {
     this.httpService.get('./assets/music.json').subscribe(
       data => {
