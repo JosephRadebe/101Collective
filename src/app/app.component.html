@@ -3,7 +3,10 @@
     <!-- regular accordion -->
     <accordion *ngFor="let x of arrMusic">
         <accordion-group heading="{{x.genre}}" >
-            Its all about me.
+            <div *ngFor="let y of x.artists">
+                <p>{{y.artist}}</p>
+            </div>
+            <button>Continue</button>
         </accordion-group>
     </accordion>
 
