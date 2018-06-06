@@ -10,15 +10,13 @@ import { AccordionModule } from "ng2-accordion";
   styleUrls: ['./app.Component.css']
 })
 export class AppComponent implements OnInit {
-  @Input() opened = false;
-  @Input() title: string;
-  @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
+  public title = 'Please select all that apply';
 
   constructor (private httpService: HttpClient) { }
 
   arrMusic: string [];
 
-  //retrieving the music genres
+  //retrieving the music
   ngOnInit () {
     this.httpService.get('./assets/music.json').subscribe(
       data => {

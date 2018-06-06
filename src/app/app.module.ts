@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from "ng2-accordion";
 
 import { AppComponent } from './app.component';
+import { MusicArtistsComponent } from './music-artists/music-artists.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MusicArtistsComponent
   ],
   imports: [
     BrowserModule,
