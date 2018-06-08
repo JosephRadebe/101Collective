@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-music-artists',
-  templateUrl: './music-artists.component.html',
-  styleUrls: ['./music-artists.component.css']
+  template: `<h3>Artists</h3>
+<h3>{{dArray}}</h3>
+<br>
+<button (click)="goBack()">Back</button>
+`
 })
-export class MusicArtistsComponent implements OnInit {
+export class MusicArtistsComponent {
+  
+  @Input() dArray: any;
 
-  constructor() { }
+  constructor(private route: Router, private location:Location) { }
 
-  ngOnInit() {
+  //go back
+  goBack() {
+    this.location.back();
   }
-
+  
 }
