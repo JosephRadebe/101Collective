@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-music-artists',
-  template: `<h3>Artists</h3>
+  template: `<h3>You have selected the following items </h3>
 <h3>{{dArray}}</h3>
 <br>
 <button (click)="goBack()">Back</button>

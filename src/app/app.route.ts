@@ -4,5 +4,7 @@ import { MusicArtistsComponent } from './music-artists/music-artists.component';
 
 
 export const routes: Routes = [
-    { path: 'artists', component: MusicArtistsComponent}
+    {path: 'home', component: AppComponent},
+    { path: 'artists', component: MusicArtistsComponent},
+    { path: '', redirectTo: '/home', pathMatch:'full'}
 ];

@@ -5,6 +5,7 @@ import { AccordionModule } from "ng2-accordion";
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.Component.html',
@@ -13,41 +14,42 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   public title = 'Please select all that apply';
 
-  constructor (private httpService: HttpClient,
-  private router:Router) { }
+  constructor(private httpService: HttpClient,
+    private router: Router) { }
 
-  arrMusic: any [];
+  arrMusic: any[];
 
   saveMusic: string[] = [];    //initialize the save selected array
 
-  dArray: any[]=[];
+  dArray: any[] = [];
 
   //retrieving the music
-  ngOnInit () {
+  ngOnInit() {
     this.httpService.get('./assets/music.json').subscribe(
       data => {
-        this.arrMusic = data as string [];	 // Populate the array
+        this.arrMusic = data as string[];	 // Populate the array
         console.log(this.arrMusic);
       },
       (err: HttpErrorResponse) => {
-        console.log (err.message);
+        console.log(err.message);
       }
     );
   }
 
 
-  clickMusic(id: any ) {
-    
+  //select artists
+  clickMusic(id: any) {
 
-    for(var i=0; i < this.arrMusic.length; i++) {
-      
-      
+
+    for (var i = 0; i < this.arrMusic.length; i++) {
+
+
       for (var x = 0; x < this.arrMusic[i].artists.length; x++) {
 
         if (id === this.arrMusic[i].artists[x].artist_id) {
 
           let name = this.arrMusic[i].artists[x];
-          
+
           //save the selected artist
           this.saveMusic.push(name.artist);
 
@@ -57,19 +59,16 @@ export class AppComponent implements OnInit {
     }
 
   }
-  
 
-  //navigate to the artists page
-  goToArtist() { 
-    
+
+  //navigate to the artists component
+  goToArtist() {
+
     this.dArray.push(this.saveMusic);
-    
-    if(this.dArray) {
-      this.router.navigate(['artists']);
-      console.log('go to artist');
-    }else{
-      console.log('Please select artist');
-    }
+
+    this.router.navigate(['artists']);
+    console.log('go to artist');
+
   }
-  
+
 }

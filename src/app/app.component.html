@@ -1,8 +1,6 @@
 
 <h3>{{title}}</h3>
 
-
-<!-- regular accordion -->
 <accordion *ngFor="let x of arrMusic">
     <accordion-group heading="{{x.genre}}">
         <div *ngFor="let y of x.artists" (click)="clickMusic(y.artist_id)">
@@ -16,5 +14,5 @@
 
 <button (click)="goToArtist()">Continue</button>
 
-<router-outlet></router-outlet>
 <app-music-artists *ngFor="let name of dArray" [dArray]="dArray"></app-music-artists>
+
