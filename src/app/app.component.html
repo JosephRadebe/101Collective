@@ -1,18 +1,20 @@
+<nav>
+    <h3>{{title}}</h3>
 
-<h3>{{title}}</h3>
+    <accordion *ngFor="let x of arrMusic">
+        <accordion-group heading="{{x.genre}}">
+            <div *ngFor="let y of x.artists" (click)="clickMusic(y.artist_id)">
+                <p>{{y.artist}}</p>
 
-<accordion *ngFor="let x of arrMusic">
-    <accordion-group heading="{{x.genre}}">
-        <div *ngFor="let y of x.artists" (click)="clickMusic(y.artist_id)">
-            <p>{{y.artist}}</p>
+            </div>
 
-        </div>
+        </accordion-group>
 
-    </accordion-group>
+    </accordion>
 
-</accordion>
+    <button (click)="goToArtist()">Continue</button>
+</nav>
 
-<button (click)="goToArtist()">Continue</button>
-
-<app-music-artists *ngFor="let name of dArray" [dArray]="dArray"></app-music-artists>
-
+<div class="container">
+    <router-outlet name="artist"></router-outlet>
+</div>

@@ -18,10 +18,8 @@ export class AppComponent implements OnInit {
     private router: Router) { }
 
   arrMusic: any[];
-
+  artist:string;
   saveMusic: string[] = [];    //initialize the save selected array
-
-  dArray: any[] = [];
 
   //retrieving the music
   ngOnInit() {
@@ -34,6 +32,7 @@ export class AppComponent implements OnInit {
         console.log(err.message);
       }
     );
+    
   }
 
 
@@ -48,10 +47,10 @@ export class AppComponent implements OnInit {
 
         if (id === this.arrMusic[i].artists[x].artist_id) {
 
-          let name = this.arrMusic[i].artists[x];
+          this.artist = this.arrMusic[i].artists[x].artist;
 
           //save the selected artist
-          this.saveMusic.push(name.artist);
+          this.saveMusic.push(this.artist);
 
           console.log(this.saveMusic);
         }
@@ -64,11 +63,31 @@ export class AppComponent implements OnInit {
   //navigate to the artists component
   goToArtist() {
 
-    this.dArray.push(this.saveMusic);
-
-    this.router.navigate(['artists']);
+    localStorage.setItem('moveItems', JSON.stringify(this.saveMusic));
+    // this.dArray.push(this.saveMusic);
+    this.router.navigate([{ outlets: { artist: ['artists'] } }]); 
+    // this.router.navigate(['artists']);
     console.log('go to artist');
 
+  }
+
+  //scriipts
+  
+  convertToScript() {
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
   }
 
 }

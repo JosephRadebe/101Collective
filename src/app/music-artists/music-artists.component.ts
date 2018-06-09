@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -6,16 +6,24 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-music-artists',
   template: `<h3>You have selected the following items </h3>
-<h3>{{dArray}}</h3>
+  <div *ngFor="let x of storedNames">
+<h3>{{x}}</h3>
+</div>
 <br>
 <button (click)="goBack()">Back</button>
 `
 })
-export class MusicArtistsComponent {
+export class MusicArtistsComponent implements OnInit {
   
-  @Input() dArray: any;
+  
 
   constructor(private route: Router, private location:Location) { }
+
+  storedNames: string = JSON.parse(localStorage.getItem("moveItems"));
+
+  ngOnInit() {
+    console.log(this.storedNames);
+  }
 
   //go back
   goBack() {
